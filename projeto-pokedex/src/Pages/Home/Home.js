@@ -19,29 +19,32 @@ import { BASE_URL } from '../../Constants/Url'
 function Home() {
   const Navigate = useNavigate()
 
-  // const [data] = GetPokemons(`${BASE_URL}`)
+  
 
   return (
     <ChakraProvider>
-      <DivContainer>
-        <GlobalStyle />
-        <Header>
-          <LogoImage src={Logo} alt="logo"></LogoImage>
 
-          <DivButtonPoke>
-            <Button
-              colorScheme={'twitter'}
-              w={'12vw'}
-              onClick={() => goToPage(Navigate, 'pokedex')}
-            >
-              Pokédex
-            </Button>
-          </DivButtonPoke>
-        </Header>
+ 
+    <DivContainer>
+      <GlobalStyle/>
+      <Header>
 
-        <Main>
-          <h1>Pokémons!</h1>
-        </Main>
+        <LogoImage src={Logo} alt="logo"></LogoImage>
+
+        <DivButtonPoke>
+        <Button 
+        colorScheme={'twitter'}
+        w={'12vw'}
+        onClick={()=> goToPage(Navigate, 'pokedex')}>Pokédex</Button>
+        </DivButtonPoke>
+  
+      </Header>
+
+
+    <Main>
+    </Main>
+
+
       </DivContainer>
     </ChakraProvider>
   )
