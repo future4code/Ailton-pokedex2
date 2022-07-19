@@ -29,6 +29,7 @@ background-color: white ;
 height: 15vh;
 display: flex;
 justify-content: center;
+align-items: center;
 `
 export const LogoImage = styled.img`
 width: 240px;
@@ -38,8 +39,8 @@ margin-top: 1vh;
 export const DivButtonPoke = styled.div`
 
 position: absolute;
-right: 4vw;
-top: 4vh;
+right: 2rem;
+
 
 `
 

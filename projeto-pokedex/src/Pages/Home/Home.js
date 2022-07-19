@@ -13,7 +13,7 @@ function Home() {
 
   const Navigate = useNavigate()
 
-  // const [data] = GetPokemons(`${BASE_URL}`)
+  
 
 
   return (
@@ -38,7 +38,6 @@ function Home() {
 
 
     <Main>
-        <h1>Pokémons!</h1>
     </Main>
 
       </DivContainer>
