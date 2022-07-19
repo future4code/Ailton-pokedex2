@@ -15,8 +15,6 @@ export const DivContainer = styled.div`
 
 width: 100vw;
 height: 100vh;
-/* background-image: url('https://guikao.files.wordpress.com/2012/01/pokemon_wallpaper01_1680.jpg');
-https://br.pinterest.com/pin/750693831619055182/ */
 background-image: url('https://i.pinimg.com/originals/df/4e/8b/df4e8ba28f912bf9cdf9fa0dfc196411.png');
 background-size: cover;
 
@@ -65,4 +63,12 @@ export const Main = styled.div`
 
 width: 100vw;
 height: 85vh;
+`
+
+export const BoxPokemon = styled.div`
+padding:1rem ;
+width: 20rem;
+height: 10rem;
+border: 1px solid black;
+
 `

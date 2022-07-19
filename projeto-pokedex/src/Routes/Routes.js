@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Intro from '../Pages/Intro.js/Intro'
+import Intro from '../Pages/Intro/Intro'
 import Home from './../Pages/Home/Home'
 import Pokedex from './../Pages/Pokedex/Pokedex'
 import Details from './../Pages/Details/Details'

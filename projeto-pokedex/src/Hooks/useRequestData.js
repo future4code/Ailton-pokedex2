@@ -11,8 +11,9 @@ export const GetPokemons = (url) => {
     axios
       .get(url)
       .then((res) => {
-        setData(res.data.results);
+        setData(res.data);
         setIsLoading(false);
+
         
       })
       .catch((err) => {
@@ -23,3 +24,6 @@ export const GetPokemons = (url) => {
 
   return [data, isLoading, error];
 };
+
+
+

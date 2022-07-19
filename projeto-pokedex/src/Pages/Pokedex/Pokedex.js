@@ -32,17 +32,6 @@ function Pokedex() {
     },
   };
 
-  const listPokemon =
-    data &&
-    data.map((pokemon) => {
-      return (
-        <BoxPokemon key={pokemon.name}>
-          <h2>
-            <strong>{pokemon.name}</strong>
-          </h2>
-        </BoxPokemon>
-      );
-    });
 
   return (
     <ChakraProvider>
@@ -67,12 +56,7 @@ function Pokedex() {
         </Header>
         {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
         <Main>
-          {isLoading && (
-            <Lottie options={defaultOptions} height={100} width={100} />
-          )}
-          {!isLoading && error && <p>{error.message}</p>}
-          {!isLoading && data && data.length >= 12 && listPokemon}
-          {!isLoading && data && data.length === 0 && <p>Não há dados</p>}
+
         </Main>
       </DivContainer>
     </ChakraProvider>
