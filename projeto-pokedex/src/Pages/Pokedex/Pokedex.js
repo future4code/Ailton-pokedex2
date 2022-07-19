@@ -22,7 +22,6 @@ import { BASE_URL } from "../../Constants/Url";
 function Pokedex() {
   const Navigate = useNavigate();
   const [data, isLoading, error] = GetPokemons(`${BASE_URL}`);
-  const [detailPokemon, setDetailPokemon] = GetPokemons(`${BASE_URL}`)
   const defaultOptions = {
     loop: true,
     autoplay: true,
