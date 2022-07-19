@@ -24,6 +24,7 @@ function Home() {
   const Navigate = useNavigate()
   const ctx = useContext(Context);
   const [detail, setDetails] = useState([])
+  const [dadosPokemon] = GetPokemons(`${BASE_URL}`);
 
   // const [pokemons, setPokemons] = useState('')
 
@@ -38,9 +39,11 @@ function Home() {
   // console.log(pokemons.pokemons.results)
 
 
+ 
+
 const detailPokemon = () =>{
 
-// console.log('detalhes',details)
+
 
 return  GetPokemons(detail)
 
@@ -106,7 +109,7 @@ return ctx.pokemons.results &&
     <ChakraProvider>
 
     {/* {console.log(pokemons.pokemons.results)} */}
-    {console.log(detail)} 
+    {/* {console.log(detail)}  */}
     {/* {console.log(pokemons)} */}
     <DivContainer>
       <GlobalStyle/>

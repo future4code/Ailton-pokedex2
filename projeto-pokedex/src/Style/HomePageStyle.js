@@ -60,7 +60,12 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 `
 
 export const Main = styled.div`
-
+padding-top: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+gap: 1rem;
 width: 100vw;
 height: 85vh;
 `
