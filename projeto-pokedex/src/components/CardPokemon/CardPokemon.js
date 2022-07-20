@@ -5,9 +5,9 @@ import { Context } from '../../Constants/createContext'
 import { GetPokemons} from '../../Hooks/useRequestData'
 
 export default function CardPokemon() {
-  const [pokemon, setPokemon] = useState({})
+  // const [pokemon, setPokemon] = useState({})
   const [dadosPokemon] = GetPokemons ('https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0', {})
-  const ctx = useContext(Context)
+  // const ctx = useContext(Context)
 
   return <div>Card Pokemon</div>
 }
