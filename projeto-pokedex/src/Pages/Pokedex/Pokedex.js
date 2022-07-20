@@ -45,13 +45,6 @@ function Pokedex() {
           </Button>
           <LogoImage src={Logo} alt="logo"></LogoImage>
 
-          <Button
-            colorScheme={"twitter"}
-            w={"12vw"}
-            onClick={() => goToPage(Navigate, "details")}
-          >
-            Detalhes Pokémon
-          </Button>
         </Header>
         {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
         <Main>

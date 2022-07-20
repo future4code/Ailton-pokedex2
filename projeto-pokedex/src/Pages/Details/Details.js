@@ -24,7 +24,7 @@ function Details() {
         <Header>
           <DivButtonBack>
             <Button
-              onClick={() => goToPage(Navigate, 'pokedex')}
+              onClick={() => goToPage(Navigate, 'home')}
               colorScheme={'twitter'}
               w={'12vw'}
             >
