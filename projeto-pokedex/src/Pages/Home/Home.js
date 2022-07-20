@@ -17,6 +17,8 @@ import { Button, ButtonGroup, list } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { GetPokemons} from "./../../Hooks/useRequestData";
 import { BASE_URL } from "../../Constants/Url";
+import axios from "axios";
+
 
 
 function Home() {
@@ -24,7 +26,7 @@ function Home() {
   const {listNamePokemons} = useContext(Context)
   const {dataPokemons} = useContext(Context)
 
-  
+  console.log("aqqquiiiii:", dataPokemons)
     const listPokemon = () => {
     return (
       listNamePokemons &&
@@ -40,6 +42,9 @@ function Home() {
       })
     );
   };
+
+
+ 
 
 
   

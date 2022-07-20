@@ -20,45 +20,29 @@ export default function GlobalState(props) {
       });
   }, []);
 
-  // console.log(dataPokemons)
-  //   const poke = () => {
-  //   const listaPokemons = []
-  //   ctx.pokemons.results &&
-  //   ctx.pokemons.results.map((pokemon) => {
-  //         axios
-  //           .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-  //           .then((res) => {
-  //             listaPokemons.push(res.data)
-  //             if (listaPokemons.length === 20) {
-  //               setDadosPokemon(listaPokemons)
-  //             }
-  //             console.log(res.data)
-  //           })
-  //           .catch((err) => {
-  //             console.log(err)
-  //           })
-
-  //     })
-  //   }
-
   useEffect(() => {
+    const listaPokemons = []
     listNamePokemons &&
       listNamePokemons.map((pokemon) => {
         axios
           .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
           .then((res) => {
-            setDataPokemons(res.data);
-            console.log(res)
+            listaPokemons.push(res.data)
+            if (listaPokemons.length === 20) {
+              setDataPokemons(listaPokemons)
+                }
           })
           .catch((err) => {
             console.log(err);
           });
       });
-  }, []);
+  }, [listNamePokemons]);
+
 
   const values = {
     listNamePokemons,
-    dataPokemons,
+    dataPokemons
+
   };
 
   return <Provider value={values}>{props.children}</Provider>;
