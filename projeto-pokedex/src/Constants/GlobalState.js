@@ -7,7 +7,7 @@ import axios from "axios";
 export default function GlobalState(props) {
   const Provider = Context.Provider;
   const [listNamePokemons, setListNamePokemons] = useState([]);
-  const [dataPokemons, setDataPokemons] = useState({});
+  const [dataPokemons, setDataPokemons] = useState([]);
 
   useEffect(() => {
     axios
