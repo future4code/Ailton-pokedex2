@@ -13,11 +13,10 @@ import {
 import Logo from "../../assets/images/Logo.png";
 import { useNavigate } from "react-router-dom";
 import { goToPage } from "../../Routes/Coordinator";
-import { Button, ButtonGroup, list } from "@chakra-ui/react";
+import { Button} from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { GetPokemons} from "./../../Hooks/useRequestData";
-import { BASE_URL } from "../../Constants/Url";
-import axios from "axios";
+import {CardRed, CardBlue, CardGreen, CardBrow, cardPoison} from './../../Style/Cards/Cards'
+
 
 
 
@@ -27,24 +26,22 @@ function Home() {
   const {dataPokemons} = useContext(Context)
 
   console.log("aqqquiiiii:", dataPokemons)
-    const listPokemon = () => {
-    return (
-      listNamePokemons &&
-      listNamePokemons.map((pokemon) => {
-        return (
-          <BoxPokemon key={pokemon.name}>
-            <p>{pokemon.url}</p>
-            <h2>
-              <strong>{pokemon.name}</strong>
-            </h2>
-          </BoxPokemon>
-        );
-      })
-    );
-  };
 
 
- 
+//   const listPokemon = () => {
+
+//   return (
+//     dataPokemons.map((pokemon) => {
+     
+//       if(pokemon)
+
+
+
+//     })
+//   );
+// };
+
+
 
 
   
@@ -77,7 +74,7 @@ function Home() {
     <ChakraProvider>
       {/* {console.log(pokemons.pokemons.results)} */}
       {/* {console.log(detail)}  */}
-      {/* {console.log(pokemons)} */}
+      {console.log(dataPokemons)}
       <DivContainer>
         <GlobalStyle />
         <Header>
@@ -104,7 +101,17 @@ function Home() {
           {!isLoading && data && data.length === 0 && <p>Não há dados</p>} */}
 
           {/* {ctx.pokemons !== undefined ? listPokemon() : <p>Sem pokémons</p>} */}
-          {listPokemon()}
+
+
+
+          {/* {dataPokemons !== 0 ?
+          listPokemon()
+            :
+          <p>...Carregando</p>
+         } */}
+
+
+
         </Main>
       </DivContainer>
     </ChakraProvider>
