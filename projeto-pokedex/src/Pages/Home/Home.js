@@ -15,8 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { goToPage } from "../../Routes/Coordinator";
 import { Button} from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
-import {CardRed, CardBlue, CardGreen, CardBrow, cardPoison} from './../../Style/Cards/Cards'
-
+import CardPokemon from "../../components/CardPokemon/CardPokemon";
 
 
 
@@ -25,21 +24,10 @@ function Home() {
   const {listNamePokemons} = useContext(Context)
   const {dataPokemons} = useContext(Context)
 
-  console.log("aqqquiiiii:", dataPokemons)
-
-
-//   const listPokemon = () => {
-
-//   return (
-//     dataPokemons.map((pokemon) => {
-     
-//       if(pokemon)
+  // console.log("aqqquiiiii:", dataPokemons)
 
 
 
-//     })
-//   );
-// };
 
 
 
@@ -74,7 +62,9 @@ function Home() {
     <ChakraProvider>
       {/* {console.log(pokemons.pokemons.results)} */}
       {/* {console.log(detail)}  */}
-      {console.log(dataPokemons)}
+      {/* {console.log(dataPokemons[0].types[0].type.name)} */}
+
+
       <DivContainer>
         <GlobalStyle />
         <Header>
@@ -109,7 +99,8 @@ function Home() {
             :
           <p>...Carregando</p>
          } */}
-
+         
+        <CardPokemon></CardPokemon>
 
 
         </Main>
