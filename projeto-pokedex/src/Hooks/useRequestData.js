@@ -7,45 +7,45 @@ export const GetPokemons = (url) => {
   const [dadosPokemon, setDadosPokemon] = useState([])
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    setIsLoading(true)
-    pegaPokemon(url)
-  }, [url])
+  // useEffect(() => {
+  //   setIsLoading(true)
+  //   pegaPokemon(url)
+  // }, [url])
 
-  const pegaPokemon = () => {
-    axios
-      .get(url)
-      .then((res) => {
-        setData(res.data)
-        setIsLoading(false)
-      })
-      .catch((err) => {
-        setIsLoading(false)
-        setError(err)
-      })
-  }
+  // const pegaPokemon = () => {
+  //   axios
+  //     .get(url)
+  //     .then((res) => {
+  //       setData(res.data)
+  //       setIsLoading(false)
+  //     })
+  //     .catch((err) => {
+  //       setIsLoading(false)
+  //       setError(err)
+  //     })
+  // }
 
-  useEffect(() => {
-    const listaPokemons = []
-    data &&
-      data.map((pokemon) => {
-        const getDetails = () => {
-          axios
-            .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-            .then((res) => {
-              listaPokemons.push(res.data)
-              if (listaPokemons.length === 20) {
-                setDadosPokemon(listaPokemons)
-              }
-              console.log(res.data)
-            })
-            .catch((err) => {
-              console.log(err)
-            })
-        }
-        getDetails()
-      })
-  }, [url])
+  // useEffect(() => {
+  //   const listaPokemons = []
+  //   data &&
+  //     data.map((pokemon) => {
+  //       const getDetails = () => {
+  //         axios
+  //           .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+  //           .then((res) => {
+  //             listaPokemons.push(res.data)
+  //             if (listaPokemons.length === 20) {
+  //               setDadosPokemon(listaPokemons)
+  //             }
+  //             console.log(res.data)
+  //           })
+  //           .catch((err) => {
+  //             console.log(err)
+  //           })
+  //       }
+  //       getDetails()
+  //     })
+  // }, [url])
 
   return [data, isLoading, error, dadosPokemon]
 }

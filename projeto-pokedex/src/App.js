@@ -1,27 +1,18 @@
 import {Router} from './Routes/Routes'
-import {BASE_URL} from './Constants/Url'
-import {GetPokemons} from './Hooks/useRequestData'
-import {Context} from './Constants/createContext'
+import React from "react"
+import GlobalState from './Constants/GlobalState';
 
 function App() {  
 
-  const [data, isLoading, error] = GetPokemons(`${BASE_URL}`);
-  const Provider = Context.Provider;
-  // console.log(Provider)
-
-  const value ={
-    pokemons: data,
-  }
 
   return (
 
-    <div>
-      <Provider value={value}>
+    
+      <GlobalState>
 
-      <Router></Router>
-      </Provider>
+      <Router/>
       
-    </div>
+      </GlobalState>
   );
 }
 
