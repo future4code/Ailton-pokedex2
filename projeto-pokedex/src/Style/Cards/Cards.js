@@ -1,3 +1,4 @@
+import { propNames } from "@chakra-ui/react"
 import styled from "styled-components"
 
 export const DivContainer = styled.div`
@@ -9,50 +10,18 @@ row-gap: 50px;
 margin: 10px;
 `
 
+export const DivTypes = styled.div`
 
-
-export const CardRed = styled.div`
-
-width: 440px;
-height: 210px;
-background-color:#EAAB7D;
-border-radius: 12px;
-
+display: flex;
+column-gap: 4px;
 `
 
-export const CardBlue = styled.div`
+
+export const CardPokemonStyled = styled.div`
 
 width: 440px;
 height: 210px;
-background-color:#71C3FF;
-border-radius: 12px;
-
-`
-
-export const CardGreen = styled.div`
-
-width: 440px;
-height: 210px;
-background-color:#76A866;
-border-radius: 12px;
-
-`
-
-export const CardBrow = styled.div`
-
-width: 440px;
-height: 210px;
-background-color:#BF9762;
-border-radius: 12px;
-
-` 
-
-export const CardPoison = styled.div`
-
-
-width: 440px;
-height: 210px;
-background-color:#729F92;
+background-color:  #c40233;
 border-radius: 12px;
 
 
@@ -86,53 +55,7 @@ margin-left: 20vw;
 margin-top: -20vh;
 `
 
-export const TypeFire = styled.div`
 
-
-background-color: #F44900;
-font-family: Poppins ;
-width: 75px;
-height: 31px;
-border-radius: 8px;
-color: white;
-border: 1px dashed rgba(255, 255, 255, 0.47);
-`
-
-export const TypePoison = styled.div`
-
-padding:0.5rem;
-background-color: #AD61AE;
-font-family: Poppins ;
-width: 75px;
-height: 31px;
-border-radius: 8px;
-color: white;
-border: 1px dashed rgba(255, 255, 255, 0.47);
-`
-
-export const TypeGrass = styled.div`
-padding-left:0.5rem;
-margin:0.5rem;
-background-color: #70B873;;
-font-family: Poppins ;
-width: 75px;
-height: 31px;
-border-radius: 8px;
-color: white;
-border: 1px dashed rgba(255, 255, 255, 0.47);
-`
-
-export const TypeWater = styled.div`
-
-
-background-color: #33A4F5;
-font-family: Poppins ;
-width: 75px;
-height: 31px;
-border-radius: 8px;
-color: white;
-border: 1px dashed rgba(255, 255, 255, 0.47);
-`
 
 export const DivButton = styled.div`
 display: flex;
@@ -144,7 +67,25 @@ export const Button = styled.button`
 
 background-color: lightskyblue;
 color: white;
-width: 5vw;
+width: 8vw;
+border-radius: 0.3rem;
+margin:0.5rem;
+height: 5vh;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+&:hover{
+
+  cursor: pointer;
+
+}
+
+`
+
+export const ButtonCaptured = styled.button`
+
+background-color: red;
+color: white;
+width: 8vw;
 border-radius: 0.3rem;
 margin:0.5rem;
 height: 5vh;
