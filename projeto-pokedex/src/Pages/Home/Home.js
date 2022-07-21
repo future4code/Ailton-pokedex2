@@ -100,7 +100,7 @@ function Home() {
           <p>...Carregando</p>
          } */}
          
-        <CardPokemon></CardPokemon>
+        <CardPokemon/>
 
 
         </Main>

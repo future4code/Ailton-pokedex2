@@ -8,6 +8,7 @@ export default function GlobalState(props) {
   const Provider = Context.Provider;
   const [listNamePokemons, setListNamePokemons] = useState([]);
   const [dataPokemons, setDataPokemons] = useState([]);
+  const [pokedex, setPokedex] = useState([])
 
   useEffect(() => {
     axios
@@ -41,7 +42,9 @@ export default function GlobalState(props) {
 
   const values = {
     listNamePokemons,
-    dataPokemons
+    dataPokemons,
+    pokedex,
+    setPokedex
 
   };
 
