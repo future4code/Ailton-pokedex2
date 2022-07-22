@@ -51,12 +51,12 @@ function Pokedex() {
 
   useEffect(() => {
     pokedex &&
-      pokedex.map((pokemon) => {
+      pokedex?.map((pokemon) => {
         axios
           .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
           .then((res) => {
             console.log(res.data)
-            setListaPokedex(res.data)
+            setListaPokedex([...listaPokedex, res.data])
           })
           .catch((err) => {
             console.log(err)
@@ -68,7 +68,7 @@ function Pokedex() {
     return listaPokedex?.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
-          <TextId>NÂº#{pokemon.id}</TextId>
+          <TextId>#{pokemon.id}</TextId>
           <PokemonName>{pokemon.name}</PokemonName>
 
           <PokemonImage
@@ -85,8 +85,6 @@ function Pokedex() {
     })
   }
 
-  // console.log('pagina pokedex', pokedex)
-
   return (
     <DivContainerPage>
       <Header>
@@ -100,7 +98,8 @@ function Pokedex() {
         <LogoImage src={Logo} alt="logo"></LogoImage>
       </Header>
       {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
-      <Main>{pokedex !== 0 ? { listPokedex } : <p>Sem Pokemons</p>}</Main>
+      <main>{listPokedex()}</main>
+      {/* <Main>{pokedex !== 0 ? { listPokedex } : <p>Sem Pokemons</p>}</Main> */}
     </DivContainerPage>
   )
 }
