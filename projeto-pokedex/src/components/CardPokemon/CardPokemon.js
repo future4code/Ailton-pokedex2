@@ -1,7 +1,7 @@
-import React from "react";
-import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Context } from "../../Constants/createContext";
+import React from 'react'
+import { useContext, useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Context } from '../../Constants/createContext'
 import {
   DivTypes,
   CardPokemonStyled,
@@ -11,77 +11,60 @@ import {
   PokemonImage,
   Button,
   ButtonCaptured,
-  DivButton,
-  
-} from "./../../Style/Cards/Cards";
-import { goToPageDetail } from "../../Routes/Coordinator";
-import TypeOfPokemon from "../TypeOfPokemon/TypeOfPokemon";
+  DivButton
+} from './../../Style/Cards/Cards'
+import { goToPageDetail } from '../../Routes/Coordinator'
+import TypeOfPokemon from '../TypeOfPokemon/TypeOfPokemon'
 
 export default function CardPokemon() {
-  const { dataPokemons } = useContext(Context);
-  const { pokedex, setPokedex } = useContext(Context);
-  const Navigate = useNavigate();
+  const { dataPokemons } = useContext(Context)
+  const { pokedex, setPokedex } = useContext(Context)
+  const Navigate = useNavigate()
 
-
-
-const addPokemon = (pokemonName) => {
-  const pokemonPokedex = pokedex.some(pokemon => pokemon === pokemonName);
-  const newPokedex = [...pokedex, pokemonName];
-  if (!pokemonPokedex){
-    setPokedex(newPokedex)
-    console.log(pokedex)
-   
-  };
-};
+  const addPokemon = (pokemonName) => {
+    const pokemonPokedex = pokedex.some((pokemon) => pokemon === pokemonName)
+    const newPokedex = [...pokedex, pokemonName]
+    if (!pokemonPokedex) {
+      setPokedex(newPokedex)
+      console.log(pokedex)
+    }
+  }
 
   const listPokemon = () => {
-    
     return dataPokemons.map((pokemon) => {
-      
       return (
         <CardPokemonStyled key={pokemon.id}>
-            <TextId>Nº#{pokemon.id}</TextId>
-            <PokemonName>{pokemon.name}</PokemonName>
+          <TextId>NÂº#{pokemon.id}</TextId>
+          <PokemonName>{pokemon.name}</PokemonName>
 
-             
-
-            <PokemonImage
-              src={pokemon.sprites.other["official-artwork"].front_default}
-              ></PokemonImage>
-            <DivButton>
-              <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
-                Detalhes
-              </Button>
-              <DivTypes>
-
-              {TypeOfPokemon(pokemon.types)}
-
-              </DivTypes>
+          <PokemonImage
+            src={pokemon.sprites.other['official-artwork'].front_default}
+          ></PokemonImage>
+          <DivButton>
+            <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
+              Detalhes
+            </Button>
+            <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
 
             {pokedex.includes(pokemon.name) && (
-              <ButtonCaptured>
-                Capturado !
-              </ButtonCaptured>
+              <ButtonCaptured>Capturado !</ButtonCaptured>
             )}
 
             {pokedex.includes(pokemon.name) || (
-              <Button
-                onClick={() => addPokemon(pokemon.name)}>
+              <Button onClick={() => addPokemon(pokemon.name)}>
                 Capturar!
               </Button>
             )}
-
-            </DivButton>
-          </CardPokemonStyled>
-        );
-      })}
-      
-
+          </DivButton>
+        </CardPokemonStyled>
+      )
+    })
+  }
 
   return (
     <DivContainer>
-      {console.log('pokedex',pokedex)}
+      {console.log('pokedex', pokedex)}
       {dataPokemons !== 0 ? listPokemon() : <p>...Carregando</p>}
     </DivContainer>
-  );
+  )
 }
