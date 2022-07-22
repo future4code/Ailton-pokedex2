@@ -21,16 +21,22 @@ export default function CardPokemon() {
   const { pokedex, setPokedex } = useContext(Context)
   const Navigate = useNavigate()
 
-  const addPokemon = (pokemonName) => {
-    const pokemonPokedex = pokedex.some((pokemon) => pokemon === pokemonName)
-    const newPokedex = [...pokedex, pokemonName]
+  const addPokemon = (pokemonDetail) => {
+    const pokemonPokedex = pokedex.some((pokemon) => pokemon === pokemonDetail)
+    const newPokedex = [...pokedex, pokemonDetail]
     if (!pokemonPokedex) {
       setPokedex(newPokedex)
+      localStorage.setItem("pokemons", JSON.stringify(newPokedex))
       console.log(pokedex)
     }
   }
 
   const listPokemon = () => {
+
+    
+   const PegaPokemons = JSON.parse(localStorage.getItem("pokemons"))
+
+
     return dataPokemons.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
@@ -46,15 +52,16 @@ export default function CardPokemon() {
             </Button>
             <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
 
-            {pokedex.includes(pokemon.name) && (
+            {/* {PegaPokemons.includes(pokemon.name) && (
               <ButtonCaptured>Capturado !</ButtonCaptured>
             )}
 
-            {pokedex.includes(pokemon.name) || (
-              <Button onClick={() => addPokemon(pokemon.name)}>
+            {PegaPokemons.includes(pokemon.name) || ( */}
+
+              <Button onClick={() => addPokemon(pokemon)}>
                 Capturar!
               </Button>
-            )}
+            {/* )} */}
           </DivButton>
         </CardPokemonStyled>
       )
