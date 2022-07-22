@@ -21,37 +21,24 @@ export default function CardPokemon() {
   const { dataPokemons } = useContext(Context);
   const { pokedex, setPokedex } = useContext(Context);
   const Navigate = useNavigate();
-  const [pokedexTeste, setPokedexTeste] = useState([]);
-
-  const addPokemon = (pokemonId) => {
-      // console.log(pokemonId)
-      
-   const mapeia = pokedexTeste?.map((pokemon)=>{
-
-    if(pokemonId === pokemon){
-
-      return <button>Capturado !</button>
-
-    }else{
-
-      return <button>Capturar Pokémon</button>
-
-    }
 
 
-
-   })
-
- 
+const addPokemon = (pokemonName) => {
+  const pokemonPokedex = pokedex.some(pokemon => pokemon === pokemonName);
+  const newPokedex = [...pokedex, pokemonName];
+  if (!pokemonPokedex){
+    setPokedex(newPokedex)
+    console.log(pokedex)
+   
   };
-
+};
 
   const listPokemon = () => {
     
     return dataPokemons.map((pokemon) => {
-
-        return (
-          <CardPokemonStyled key={pokemon.id}>
+      
+      return (
+        <CardPokemonStyled key={pokemon.id}>
             <TextId>Nº#{pokemon.id}</TextId>
             <PokemonName>{pokemon.name}</PokemonName>
 
@@ -59,7 +46,7 @@ export default function CardPokemon() {
 
             <PokemonImage
               src={pokemon.sprites.other["official-artwork"].front_default}
-            ></PokemonImage>
+              ></PokemonImage>
             <DivButton>
               <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
                 Detalhes
@@ -70,15 +57,28 @@ export default function CardPokemon() {
 
               </DivTypes>
 
-             {addPokemon(pokemon.name)}
+            {pokedex.includes(pokemon.name) && (
+              <ButtonCaptured>
+                Capturado !
+              </ButtonCaptured>
+            )}
+
+            {pokedex.includes(pokemon.name) || (
+              <Button
+                onClick={() => addPokemon(pokemon.name)}>
+                Capturar!
+              </Button>
+            )}
+
             </DivButton>
           </CardPokemonStyled>
         );
       })}
-
+      
 
   return (
     <DivContainer>
+      {console.log('pokedex',pokedex)}
       {dataPokemons !== 0 ? listPokemon() : <p>...Carregando</p>}
     </DivContainer>
   );
