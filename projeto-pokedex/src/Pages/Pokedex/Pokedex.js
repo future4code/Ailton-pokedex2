@@ -50,30 +50,15 @@ function Pokedex() {
   const [listaPokedex, setListaPokedex] = useState([])
 
 
-  useEffect(()=>{
-
-
-  pegarDetalhes()
-
-
-  },[])
-
-
-
-
-  const pegarDetalhes = () =>{
-
-    const guardaPokemon = []
-
-        pokedex &&
-      pokedex.map((pokemon) => {
+  useEffect(() => {
+    pokedex &&
+      pokedex?.map((pokemon) => {
         axios
           .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
           .then((res) => {
-            guardaPokemon.push(res.data);
-            if (listaPokemons.length === 20) {
-              setListaPokedex(guardaPokemon);
-            }
+            console.log(res.data)
+            setListaPokedex([...listaPokedex, res.data])
+
           })
           .catch((err) => {
             console.log(err)
@@ -88,7 +73,7 @@ function Pokedex() {
     return listaPokedex?.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
-          <TextId>NÂº#{pokemon.id}</TextId>
+          <TextId>#{pokemon.id}</TextId>
           <PokemonName>{pokemon.name}</PokemonName>
 
           <PokemonImage
@@ -105,8 +90,6 @@ function Pokedex() {
     })
   }
 
-  // console.log('pagina pokedex', pokedex)
-
   return (
     <DivContainerPage>
       {console.log('detalhes',listaPokedex)}
@@ -121,13 +104,11 @@ function Pokedex() {
         <LogoImage src={Logo} alt="logo"></LogoImage>
       </Header>
       {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
-      <Main>
-        {/* {pokedex !== 0 ? { listPokedex } : 
-        <p>Sem Pokemons</p>} */}
 
-        {listaPokedex.name}
+      <main>{listPokedex()}</main>
+      {/* <Main>{pokedex !== 0 ? { listPokedex } : <p>Sem Pokemons</p>}</Main> */}
 
-        </Main>
+   
     </DivContainerPage>
   )
 }
