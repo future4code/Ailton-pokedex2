@@ -13,24 +13,16 @@ import {
 import Logo from "../../assets/images/Logo.png";
 import { useNavigate } from "react-router-dom";
 import { goToPage } from "../../Routes/Coordinator";
-import { Button} from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
 
-
-
 function Home() {
   const Navigate = useNavigate();
-  const {listNamePokemons} = useContext(Context)
-  const {dataPokemons} = useContext(Context)
   
-
 
   return (
     <ChakraProvider>
-
-
-
       <DivContainer>
         <GlobalStyle />
         <Header>
@@ -48,11 +40,7 @@ function Home() {
         </Header>
 
         <Main>
-
-         
-        <CardPokemon/>
-
-
+          <CardPokemon />
         </Main>
       </DivContainer>
     </ChakraProvider>

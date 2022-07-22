@@ -86,6 +86,7 @@ export const PokeImage = styled.img`
 `;
 
 export const BoxMoves = styled.div`
+  display: flex;
   margin: 2rem 0 0 2rem;
   background-color: white;
   width: 16rem;
@@ -93,12 +94,50 @@ export const BoxMoves = styled.div`
   border-radius: 12px;
 `;
 
-export const P = styled.div`
- margin-left: 1rem;
+export const P = styled.p`
+  margin: 1rem;
 `;
-export const PokemonImage= styled.img`
+export const PokemonImage = styled.img`
+  width: 200px;
+  margin-left: 12rem;
+  margin-bottom: 21rem;
+`;
 
-width: 200px;
-margin-left: 12rem;
-margin-bottom: 21rem;
+export const Titulos = styled.h3`
+  margin: 1rem;
+`;
+
+export const TextId = styled.p`
+  margin: 0 0 0 2rem;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: white;
+`;
+
+export const PokemonName = styled.p`
+  margin: 0 0 0 2rem;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  color: white;
+`;
+
+export const Moves = styled.div`
+  padding-left: 1rem;
+  background-color: #bbbbbb;
+  margin-top:1rem;
+  width: 10rem;
+  height: 31px;
+  border-radius: 8px;
+  color: white;
+  border: 1px dashed rgba(255, 255, 255, 0.47);
+`;
+export const DivTypes = styled.div`
+margin-left: 2rem;
 `
+

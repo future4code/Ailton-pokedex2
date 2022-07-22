@@ -1,5 +1,4 @@
-import styled from "styled-components"
-
+import styled from "styled-components";
 
 // export const DivTypes = styled.div`
 
@@ -7,19 +6,16 @@ import styled from "styled-components"
 // column-gap: 4px;
 // `
 
-
 export const PokemonsTypes = styled.div`
-
-
-background-color: ${(props) => props.color} ;
-font-family: Poppins ;
-width: 75px;
-height: 31px;
-border-radius: 8px;
-color: white;
-border: 1px dashed rgba(255, 255, 255, 0.47);
-`
-
+display: flex;
+  margin: 10px;
+  background-color: ${(props) => props.color};
+  width: 75px;
+  height: 31px;
+  border-radius: 8px;
+  color: white;
+  border: 1px dashed rgba(255, 255, 255, 0.47);
+`;
 
 // export const colorType = {
 //     grass: "#76A866",
