@@ -21,42 +21,66 @@ export default function CardPokemon() {
   const { dataPokemons } = useContext(Context);
   const { pokedex, setPokedex } = useContext(Context);
   const Navigate = useNavigate();
-  
 
-  const addPokemon = (pokemonId) => {
-    const pokemonPokedex = pokedex.some(pokemon => pokemon === pokemonId);
-    const newPokedex = [...pokedex, pokemonId];
-    if (!pokemonPokedex){
-      setPokedex(newPokedex)
-      console.log(pokedex)
-     
-    };
+
+
+const addPokemon = (pokemonName) => {
+  const pokemonPokedex = pokedex.some(pokemon => pokemon === pokemonName);
+  const newPokedex = [...pokedex, pokemonName];
+  if (!pokemonPokedex){
+    setPokedex(newPokedex)
+    console.log(pokedex)
+   
   };
-
- 
+};
 
   const listPokemon = () => {
-    return dataPokemons.map((pokemon) => (
-      <CardPokemonStyled key={pokemon.id}>
-        <TextId>Nº#{pokemon.id}</TextId>
-        <PokemonName>{pokemon.name}</PokemonName>
-        <PokemonImage
-          src={pokemon.sprites.other["official-artwork"].front_default}
-        ></PokemonImage>
-        <DivButton>
-          <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
-            Detalhes
-          </Button>
-          <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
-          <Button onClick={() => addPokemon(pokemon.name)}>Adicionar</Button>
+    
+    return dataPokemons.map((pokemon) => {
       
-        </DivButton>
-      </CardPokemonStyled>
-    ));
-  };
+      return (
+        <CardPokemonStyled key={pokemon.id}>
+            <TextId>Nº#{pokemon.id}</TextId>
+            <PokemonName>{pokemon.name}</PokemonName>
+
+             
+
+            <PokemonImage
+              src={pokemon.sprites.other["official-artwork"].front_default}
+              ></PokemonImage>
+            <DivButton>
+              <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
+                Detalhes
+              </Button>
+              <DivTypes>
+
+              {TypeOfPokemon(pokemon.types)}
+
+              </DivTypes>
+
+            {pokedex.includes(pokemon.name) && (
+              <ButtonCaptured>
+                Capturado !
+              </ButtonCaptured>
+            )}
+
+            {pokedex.includes(pokemon.name) || (
+              <Button
+                onClick={() => addPokemon(pokemon.name)}>
+                Capturar!
+              </Button>
+            )}
+
+            </DivButton>
+          </CardPokemonStyled>
+        );
+      })}
+      
+
 
   return (
     <DivContainer>
+      {console.log('pokedex',pokedex)}
       {dataPokemons !== 0 ? listPokemon() : <p>...Carregando</p>}
     </DivContainer>
   );
