@@ -63,7 +63,7 @@ function TypeOfPokemon(props) {
   });
 
 
-  return <div>{mapTypeProps}</div>;
+  return <PokemonsTypes>{mapTypeProps}</PokemonsTypes>;
 }
 
 export default TypeOfPokemon;

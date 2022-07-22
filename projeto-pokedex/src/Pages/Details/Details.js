@@ -7,6 +7,9 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../../Constants/createContext";
+import Lottie from "react-lottie";
+import animationData from "../../lotties/pokebola.json";
+
 
 import {
   DivContainerDetails,
@@ -23,59 +26,89 @@ import {
   PokeImage,
   P,
   PokemonImage,
+  Moves,
+  Titulos,
+  TextId,
+  PokemonName,
+  PokemonsMoves,
+  DivTypes
+
 } from "../../Style/PageDetailStyled";
 import { GetPokemons } from "../../Hooks/useRequestData";
 import axios from "axios";
+import TypeOfPokemon from "../../components/TypeOfPokemon/TypeOfPokemon"
 
 function Details() {
   const params = useParams();
   const Navigate = useNavigate();
-  const [dadosPoke, setDadosPoke] = useState([]);
+  const [dadosPoke, setDadosPoke] = useState();
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   useEffect(() => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${params.pokemonName}`)
       .then((res) => {
-        setDadosPoke(res.data.data);
-        console.log("efect:", res)
+        setDadosPoke(res.data);
+        console.log(res)
       })
       .catch((err) => {
         console.log(err);
       });
   }, [params.pokemonName]);
-  console.log("Aqui", dadosPoke)
-  
+
   const listPokemon = () => {
-    return dadosPoke && dadosPoke.map((pokemon) => {
-      return (
-        <Main>
-          <CardPokemonStyled>
-            <div>
-              <BoxPhotoPoke>
-                <PokeImage alt="pokemon" src={pokemon.sprites.front_default} />
-              </BoxPhotoPoke>
-              <BoxPhotoPoke2>
-                <PokeImage alt="pokemon" src={pokemon.sprites.back_default} />
-              </BoxPhotoPoke2>
-            </div>
-            <BoxStatus>
-              <P>HP:{pokemon.stats[0].base_stat}</P>
-              <P>Attack:{pokemon.stats[1].base_stat}</P>
-              <P>Defense:{pokemon.stats[2].base_stat}</P>
-              <P>Sp.Atk:{pokemon.stats[3].base_stat}</P>
-              <P>Sp.Def:{pokemon.stats[4].base_stat}</P>
-              <P>Speed:{pokemon.stats[5].base_stat}</P>
-              <P>Total:{}</P>
-            </BoxStatus>
-            <h3>{pokemon.id} </h3>
-            <BoxMoves></BoxMoves>
-            <PokemonImage
-              src={pokemon.sprites.other["official-artwork"].front_default}
-            ></PokemonImage>
-          </CardPokemonStyled>
-        </Main>
-      );
-    });
+    return dadosPoke ? (
+      <Main>
+        
+        <CardPokemonStyled>
+          <div>
+            <BoxPhotoPoke>
+              <PokeImage alt="pokemon" src={dadosPoke.sprites.front_default} />
+            </BoxPhotoPoke>
+            <BoxPhotoPoke2>
+              <PokeImage alt="pokemon" src={dadosPoke.sprites.back_default} />
+            </BoxPhotoPoke2>
+          </div>
+          <BoxStatus>
+            <P>HP:{dadosPoke.stats[0].base_stat}</P>
+            <P>Attack:{dadosPoke.stats[1].base_stat}</P>
+            <P>Defense:{dadosPoke.stats[2].base_stat}</P>
+            <P>Sp.Atk:{dadosPoke.stats[3].base_stat}</P>
+            <P>Sp.Def:{dadosPoke.stats[4].base_stat}</P>
+            <P>Speed:{dadosPoke.stats[5].base_stat}</P>
+            <P>Total:{}</P>
+          </BoxStatus>
+          <div>
+          <TextId>Nº#{dadosPoke.id}</TextId>
+        <PokemonName>{dadosPoke.name}</PokemonName>
+        <DivTypes>{TypeOfPokemon(dadosPoke.types)}</DivTypes>
+          <BoxMoves>
+            <Titulos>
+              <strong>Habilidades</strong>
+              <Moves> {dadosPoke.moves[0].move.name}</Moves>
+              <Moves> {dadosPoke.moves[1].move.name}</Moves>
+              <Moves> {dadosPoke.moves[2].move.name}</Moves>
+              <Moves> {dadosPoke.moves[3].move.name}</Moves>
+            </Titulos>
+          </BoxMoves>
+          </div>
+          <PokemonImage
+            src={dadosPoke.sprites.other["official-artwork"].front_default}
+          ></PokemonImage>
+        </CardPokemonStyled>
+      </Main>
+    ) : (
+      <div>
+        <Lottie options={defaultOptions} height={100} width={100} />
+      </div>
+    );
   };
 
   return (
