@@ -8,7 +8,7 @@ export default function GlobalState(props) {
   const Provider = Context.Provider;
   const [listNamePokemons, setListNamePokemons] = useState([]);
   const [dataPokemons, setDataPokemons] = useState([]);
-  const [pokedex, setPokedex] = useState([])
+  const [pokedex, setPokedex] = useState([]);
 
   useEffect(() => {
     axios
@@ -21,17 +21,19 @@ export default function GlobalState(props) {
       });
   }, []);
 
+ 
+
   useEffect(() => {
-    const listaPokemons = []
+    const listaPokemons = [];
     listNamePokemons &&
       listNamePokemons.map((pokemon) => {
         axios
           .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
           .then((res) => {
-            listaPokemons.push(res.data)
+            listaPokemons.push(res.data);
             if (listaPokemons.length === 20) {
-              setDataPokemons(listaPokemons)
-                }
+              setDataPokemons(listaPokemons);
+            }
           })
           .catch((err) => {
             console.log(err);
@@ -39,13 +41,12 @@ export default function GlobalState(props) {
       });
   }, [listNamePokemons]);
 
-
   const values = {
     listNamePokemons,
     dataPokemons,
     pokedex,
-    setPokedex
-
+    setPokedex,
+   
   };
 
   return <Provider value={values}>{props.children}</Provider>;

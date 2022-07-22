@@ -12,15 +12,16 @@ import {
   Button,
   ButtonCaptured,
   DivButton,
+  
 } from "./../../Style/Cards/Cards";
 import { goToPageDetail } from "../../Routes/Coordinator";
-import TypeOfPokemon from '../TypeOfPokemon/TypeOfPokemon';
-
+import TypeOfPokemon from "../TypeOfPokemon/TypeOfPokemon";
 
 export default function CardPokemon() {
   const { dataPokemons } = useContext(Context);
   const { pokedex, setPokedex } = useContext(Context);
   const Navigate = useNavigate();
+
 
 
 const addPokemon = (pokemonName) => {
@@ -75,6 +76,7 @@ const addPokemon = (pokemonName) => {
         );
       })}
       
+
 
   return (
     <DivContainer>
