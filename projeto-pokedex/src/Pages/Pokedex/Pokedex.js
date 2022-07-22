@@ -49,6 +49,7 @@ function Pokedex() {
   const { pokedex, setPokedex } = useContext(Context)
   const [listaPokedex, setListaPokedex] = useState([])
 
+
   useEffect(() => {
     pokedex &&
       pokedex?.map((pokemon) => {
@@ -57,12 +58,16 @@ function Pokedex() {
           .then((res) => {
             console.log(res.data)
             setListaPokedex([...listaPokedex, res.data])
+
           })
           .catch((err) => {
             console.log(err)
           })
       })
-  }, [])
+
+  }
+    
+
 
   const listPokedex = () => {
     return listaPokedex?.map((pokemon) => {
@@ -87,6 +92,7 @@ function Pokedex() {
 
   return (
     <DivContainerPage>
+      {console.log('detalhes',listaPokedex)}
       <Header>
         <Button
           colorScheme={'twitter'}
@@ -98,8 +104,11 @@ function Pokedex() {
         <LogoImage src={Logo} alt="logo"></LogoImage>
       </Header>
       {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
+
       <main>{listPokedex()}</main>
       {/* <Main>{pokedex !== 0 ? { listPokedex } : <p>Sem Pokemons</p>}</Main> */}
+
+   
     </DivContainerPage>
   )
 }
