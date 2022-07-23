@@ -26,21 +26,18 @@ export default function CardPokemon() {
     const newPokedex = [...pokedex, pokemonDetail]
     if (!pokemonPokedex) {
       setPokedex(newPokedex)
-      localStorage.setItem("pokemons", JSON.stringify(newPokedex))
+      localStorage.setItem('pokemons', JSON.stringify(newPokedex))
       console.log(pokedex)
     }
   }
 
   const listPokemon = () => {
-
-    
-   const PegaPokemons = JSON.parse(localStorage.getItem("pokemons"))
-
+    const PegaPokemons = JSON.parse(localStorage.getItem('pokemons'))
 
     return dataPokemons.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
-          <TextId>NÂº#{pokemon.id}</TextId>
+          <TextId>#{pokemon.id}</TextId>
           <PokemonName>{pokemon.name}</PokemonName>
 
           <PokemonImage
@@ -58,9 +55,7 @@ export default function CardPokemon() {
 
             {PegaPokemons.includes(pokemon.name) || ( */}
 
-              <Button onClick={() => addPokemon(pokemon)}>
-                Capturar!
-              </Button>
+            <Button onClick={() => addPokemon(pokemon)}>Capturar!</Button>
             {/* )} */}
           </DivButton>
         </CardPokemonStyled>
