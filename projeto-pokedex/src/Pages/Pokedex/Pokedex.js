@@ -12,7 +12,8 @@ import {
   DivContainer,
   PokemonImage,
   Button,
-  DivButton
+  DivButton,
+  ButtonCaptured
 } from './../../Style/Cards/Cards'
 
 import {
@@ -33,10 +34,10 @@ import Lottie from 'react-lottie'
 import animationData from '../../lotties/pokebola.json'
 import { GetPokemons } from './../../Hooks/useRequestData'
 import { BASE_URL } from '../../Constants/Url'
+import { goToPageDetail } from '../../Routes/Coordinator'
 
 function Pokedex() {
   const Navigate = useNavigate()
-  const [data, isLoading, error] = GetPokemons(`${BASE_URL}`)
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -46,37 +47,38 @@ function Pokedex() {
     }
   }
 
-  const { pokedex, setPokedex } = useContext(Context)
+  const { pokedex, setPokedex} = useContext(Context)
   const [listaPokedex, setListaPokedex] = useState([])
+console.log('POKEDEX', listaPokedex)
 
+    const getPokedex = () => {
+    const pokedexlistP = []
+      pokedex?.forEach((pokemon) => (
+        axios
+          .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+          .then((res) => {
+            pokedexlistP.push(res.data)
+            setListaPokedex(pokedexlistP)
 
-
-
- const removePokemon = (pokemon) =>{
-
-  const PegaPokemons = JSON.parse(localStorage.getItem("pokemons"))
-
-  PegaPokemons.map((pokemonName)=>{
-    console.log(pokemonName, pokemon)
-    if(pokemonName.name === pokemon){
-    
-      localStorage.removeItem(pokemon);
-
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      ))  
     }
+      useEffect(() => {
+        getPokedex()
+  },[])
+    
 
-  })
-
-
- }
-
-
-  const listPokedexMap = () => {
-
-   const PegaPokemons = JSON.parse(localStorage.getItem("pokemons"))
-
-
-
-    return PegaPokemons?.map((pokemon) => {
+  const removePokedex = (onPokedex) =>{
+    const removeDex = pokedex.filter(remove =>{
+        return remove.id !== onPokedex.id
+    })
+    setPokedex(removeDex)
+}
+  const listPokedex = () => {
+    return listaPokedex?.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
           <TextId>#{pokemon.id}</TextId>
@@ -85,15 +87,13 @@ function Pokedex() {
           <PokemonImage
             src={pokemon.sprites.other['official-artwork'].front_default}
           ></PokemonImage>
-
-          <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
-
           <DivButton>
-
-          <Button onClick={() => removePokemon(pokemon.name)}>Remove</Button>
-
+            <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
+              Detalhes
+            </Button>
           </DivButton>
-
+          <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
+          <ButtonCaptured onClick={() =>  removePokedex(pokemon.name)}>Remover !</ButtonCaptured>
         </CardPokemonStyled>
       )
     })
@@ -101,7 +101,7 @@ function Pokedex() {
 
   return (
     <DivContainerPage>
-
+     
       <Header>
         <Button
           colorScheme={'twitter'}
@@ -112,11 +112,12 @@ function Pokedex() {
         </Button>
         <LogoImage src={Logo} alt="logo"></LogoImage>
       </Header>
+      {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
 
+      <main>{listPokedex()}</main>
+      {/* <Main>{pokedex !== 0 ? { listPokedex } : <p>Sem Pokemons</p>}</Main> */}
 
-      <Main>
-        {listPokedexMap()}
-        </Main>
+   
     </DivContainerPage>
   )
 }

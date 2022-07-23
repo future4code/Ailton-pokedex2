@@ -21,22 +21,25 @@ export default function CardPokemon() {
   const { pokedex, setPokedex } = useContext(Context)
   const Navigate = useNavigate()
 
-  const addPokemon = (pokemonDetail) => {
-    const pokemonPokedex = pokedex.some((pokemon) => pokemon === pokemonDetail)
-    const newPokedex = [...pokedex, pokemonDetail]
+  const addPokemon = (pokemonName) => {
+    const pokemonPokedex = pokedex.some((pokemon) => pokemon === pokemonName)
+    const newPokedex = [...pokedex, pokemonName]
     if (!pokemonPokedex) {
       setPokedex(newPokedex)
-      localStorage.setItem("pokemons", JSON.stringify(newPokedex))
-      console.log(pokedex)
+      
     }
   }
 
+  const removePokedex = (onPokedex) =>{
+    const removeDex = pokedex.filter(remove =>{
+        return remove.id !== onPokedex.id
+    })
+    setPokedex(removeDex)
+}
+
+
+  // console.log('CardPokemon',pokedex)
   const listPokemon = () => {
-
-    
-   const PegaPokemons = JSON.parse(localStorage.getItem("pokemons"))
-
-
     return dataPokemons.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
@@ -52,16 +55,15 @@ export default function CardPokemon() {
             </Button>
             <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
 
-            {/* {PegaPokemons.includes(pokemon.name) && (
-              <ButtonCaptured>Capturado !</ButtonCaptured>
+            {pokedex.includes(pokemon.name) && (
+              <ButtonCaptured onClick={() =>  removePokedex(pokemon.name)}>Remover !</ButtonCaptured>
             )}
 
-            {PegaPokemons.includes(pokemon.name) || ( */}
-
-              <Button onClick={() => addPokemon(pokemon)}>
+            {pokedex.includes(pokemon.name) || (
+              <Button onClick={() => addPokemon(pokemon.name)}>
                 Capturar!
               </Button>
-            {/* )} */}
+            )}
           </DivButton>
         </CardPokemonStyled>
       )
@@ -70,7 +72,7 @@ export default function CardPokemon() {
 
   return (
     <DivContainer>
-      {console.log('pokedex', pokedex)}
+      
       {dataPokemons !== 0 ? listPokemon() : <p>...Carregando</p>}
     </DivContainer>
   )

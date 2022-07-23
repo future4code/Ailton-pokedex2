@@ -19,6 +19,7 @@ import CardPokemon from "../../components/CardPokemon/CardPokemon";
 
 function Home() {
   const Navigate = useNavigate();
+  const { pagination, setPagination } = useContext(Context);
   
 
   return (
