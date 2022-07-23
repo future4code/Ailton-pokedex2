@@ -38,10 +38,6 @@ export default function CardPokemon() {
 }
 
 
-
-    
-
-  // console.log('CardPokemon',pokedex)
   const listPokemon = () => {
     return dataPokemons.map((pokemon) => {
       return (
@@ -59,7 +55,7 @@ export default function CardPokemon() {
             <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
 
             {pokedex.includes(pokemon.name) && (
-              <ButtonCaptured onClick={() =>  removePokedex(pokemon.name)}>Remover !</ButtonCaptured>
+              <ButtonCaptured>Capturado !</ButtonCaptured>
             )}
 
             {pokedex.includes(pokemon.name) || (
