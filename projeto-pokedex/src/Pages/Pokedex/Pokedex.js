@@ -37,6 +37,19 @@ import { BASE_URL } from '../../Constants/Url'
 import { goToPageDetail } from '../../Routes/Coordinator'
 
 function Pokedex() {
+
+  const { pokedex, setPokedex} = useContext(Context)
+  const [listaPokedex, setListaPokedex] = useState([])
+
+//  useEffect(()=>{
+
+
+//   listPokedex()
+
+
+//  },[listaPokedex])
+
+
   const Navigate = useNavigate()
   const defaultOptions = {
     loop: true,
@@ -47,9 +60,8 @@ function Pokedex() {
     }
   }
 
-  const { pokedex, setPokedex} = useContext(Context)
-  const [listaPokedex, setListaPokedex] = useState([])
-console.log('POKEDEX', listaPokedex)
+
+// console.log('POKEDEX', listaPokedex)
 
     const getPokedex = () => {
     const pokedexlistP = []
@@ -68,15 +80,20 @@ console.log('POKEDEX', listaPokedex)
     }
       useEffect(() => {
         getPokedex()
-  },[])
+  },[pokedex])
     
 
   const removePokedex = (onPokedex) =>{
+    console.log('pokemon da pokedex', onPokedex)
+
     const removeDex = pokedex.filter(remove =>{
-        return remove.id !== onPokedex.id
+        console.log('clicado', remove)
+        return  onPokedex !== remove
     })
+    console.log('array sem pokemon',removeDex)
     setPokedex(removeDex)
-}
+    getPokedex()
+  }
   const listPokedex = () => {
     return listaPokedex?.map((pokemon) => {
       return (
@@ -114,7 +131,24 @@ console.log('POKEDEX', listaPokedex)
       </Header>
       {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
 
-      <main>{listPokedex()}</main>
+      <main>
+
+
+        {listaPokedex.length === 0 ?
+        
+        <p>...Sem pokémon</p>
+        
+        :
+
+        listPokedex()
+        
+        }
+
+        
+        
+        
+        
+        </main>
       {/* <Main>{pokedex !== 0 ? { listPokedex } : <p>Sem Pokemons</p>}</Main> */}
 
    
