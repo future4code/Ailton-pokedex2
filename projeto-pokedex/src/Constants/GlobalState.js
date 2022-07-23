@@ -10,7 +10,7 @@ export default function GlobalState(props) {
   const [dataPokemons, setDataPokemons] = useState([]);
   const [pokedex, setPokedex] = useState([]);
   const [pagination, setPagination] = useState(1)
-  const [listAllPokemons, setAllPokemons] = useState([]);
+  const [AllPokemons, setAllPokemons] = useState([]);
 
 
 
@@ -19,7 +19,7 @@ export default function GlobalState(props) {
       .get(`https://pokeapi.co/api/v2/ability/?limit=20&offset=${20*(pagination-1)}`)
       .then((res) => {
         setAllPokemons(res.data.results);
-        console.log(res.data)
+        
       })
       .catch((err) => {
         console.log(err);
@@ -63,7 +63,8 @@ export default function GlobalState(props) {
     pokedex,
     setPokedex,
     pagination,
-    listAllPokemons, 
+    setPagination,
+    AllPokemons, 
     setAllPokemons
    
   };
