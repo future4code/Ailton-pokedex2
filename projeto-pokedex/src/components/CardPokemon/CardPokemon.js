@@ -26,10 +26,19 @@ export default function CardPokemon() {
     const newPokedex = [...pokedex, pokemonName]
     if (!pokemonPokedex) {
       setPokedex(newPokedex)
-      console.log(pokedex)
+      
     }
   }
 
+  const removePokedex = (onPokedex) =>{
+    const removeDex = pokedex.filter(remove =>{
+        return remove.id !== onPokedex.id
+    })
+    setPokedex(removeDex)
+}
+
+
+  // console.log('CardPokemon',pokedex)
   const listPokemon = () => {
     return dataPokemons.map((pokemon) => {
       return (
@@ -47,7 +56,7 @@ export default function CardPokemon() {
             <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
 
             {pokedex.includes(pokemon.name) && (
-              <ButtonCaptured>Capturado !</ButtonCaptured>
+              <ButtonCaptured onClick={() =>  removePokedex(pokemon.name)}>Remover !</ButtonCaptured>
             )}
 
             {pokedex.includes(pokemon.name) || (
@@ -63,7 +72,7 @@ export default function CardPokemon() {
 
   return (
     <DivContainer>
-      {console.log('pokedex', pokedex)}
+      
       {dataPokemons !== 0 ? listPokemon() : <p>...Carregando</p>}
     </DivContainer>
   )

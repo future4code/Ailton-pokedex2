@@ -9,6 +9,22 @@ export default function GlobalState(props) {
   const [listNamePokemons, setListNamePokemons] = useState([]);
   const [dataPokemons, setDataPokemons] = useState([]);
   const [pokedex, setPokedex] = useState([]);
+  const [pagination, setPagination] = useState(1)
+  const [listAllPokemons, setAllPokemons] = useState([]);
+
+
+
+  useEffect(() => {
+    axios
+      .get(`https://pokeapi.co/api/v2/ability/?limit=20&offset=${20*(pagination-1)}`)
+      .then((res) => {
+        setAllPokemons(res.data.results);
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [pagination]);
 
   useEffect(() => {
     axios
@@ -46,6 +62,9 @@ export default function GlobalState(props) {
     dataPokemons,
     pokedex,
     setPokedex,
+    pagination,
+    listAllPokemons, 
+    setAllPokemons
    
   };
 

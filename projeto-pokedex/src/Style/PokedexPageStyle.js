@@ -68,3 +68,20 @@ export const Main = styled.div`
   width: 100vw;
   height: 85vh;
 `
+export const ButtonCaptured = styled.button`
+
+background-color: red;
+color: white;
+width: 8vw;
+border-radius: 0.3rem;
+margin:0.5rem;
+height: 5vh;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+&:hover{
+
+  cursor: pointer;
+
+}
+
+`

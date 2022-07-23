@@ -12,7 +12,8 @@ import {
   DivContainer,
   PokemonImage,
   Button,
-  DivButton
+  DivButton,
+  ButtonCaptured
 } from './../../Style/Cards/Cards'
 
 import {
@@ -33,10 +34,10 @@ import Lottie from 'react-lottie'
 import animationData from '../../lotties/pokebola.json'
 import { GetPokemons } from './../../Hooks/useRequestData'
 import { BASE_URL } from '../../Constants/Url'
+import { goToPageDetail } from '../../Routes/Coordinator'
 
 function Pokedex() {
   const Navigate = useNavigate()
-  const [data, isLoading, error] = GetPokemons(`${BASE_URL}`)
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -46,29 +47,36 @@ function Pokedex() {
     }
   }
 
-  const { pokedex, setPokedex } = useContext(Context)
+  const { pokedex, setPokedex} = useContext(Context)
   const [listaPokedex, setListaPokedex] = useState([])
+console.log('POKEDEX', listaPokedex)
 
-
-  useEffect(() => {
-    pokedex &&
-      pokedex?.map((pokemon) => {
+    const getPokedex = () => {
+    const pokedexlistP = []
+      pokedex?.forEach((pokemon) => (
         axios
           .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
           .then((res) => {
-            console.log(res.data)
-            setListaPokedex([...listaPokedex, res.data])
+            pokedexlistP.push(res.data)
+            setListaPokedex(pokedexlistP)
 
           })
           .catch((err) => {
             console.log(err)
           })
-      })
-
-  }
+      ))  
+    }
+      useEffect(() => {
+        getPokedex()
+  },[])
     
 
-
+  const removePokedex = (onPokedex) =>{
+    const removeDex = pokedex.filter(remove =>{
+        return remove.id !== onPokedex.id
+    })
+    setPokedex(removeDex)
+}
   const listPokedex = () => {
     return listaPokedex?.map((pokemon) => {
       return (
@@ -79,12 +87,13 @@ function Pokedex() {
           <PokemonImage
             src={pokemon.sprites.other['official-artwork'].front_default}
           ></PokemonImage>
-          {/* <DivButton>
+          <DivButton>
             <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
               Detalhes
             </Button>
-          </DivButton> */}
+          </DivButton>
           <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
+          <ButtonCaptured onClick={() =>  removePokedex(pokemon.name)}>Remover !</ButtonCaptured>
         </CardPokemonStyled>
       )
     })
@@ -92,7 +101,7 @@ function Pokedex() {
 
   return (
     <DivContainerPage>
-      {console.log('detalhes',listaPokedex)}
+     
       <Header>
         <Button
           colorScheme={'twitter'}
