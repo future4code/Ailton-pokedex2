@@ -9,17 +9,13 @@ export default function GlobalState(props) {
   const [listNamePokemons, setListNamePokemons] = useState([]);
   const [dataPokemons, setDataPokemons] = useState([]);
   const [pokedex, setPokedex] = useState([]);
-  const [pagination, setPagination] = useState(1)
-  const [listAllPokemons, setAllPokemons] = useState([]);
-
-
+  const [pagination, setPagination] = useState(1);
 
   useEffect(() => {
     axios
-      .get(`https://pokeapi.co/api/v2/ability/?limit=20&offset=${20*(pagination-1)}`)
+      .get(`${BASE_URL}?limit=20&offset=${20 * (pagination - 1)}`)
       .then((res) => {
-        setAllPokemons(res.data.results);
-        console.log(res.data)
+        setListNamePokemons(res.data.results);
       })
       .catch((err) => {
         console.log(err);
@@ -27,22 +23,9 @@ export default function GlobalState(props) {
   }, [pagination]);
 
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}`)
-      .then((res) => {
-        setListNamePokemons(res.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
- 
-
-  useEffect(() => {
     const listaPokemons = [];
     listNamePokemons &&
-      listNamePokemons.map((pokemon) => {
+      listNamePokemons.forEach((pokemon) => {
         axios
           .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
           .then((res) => {
@@ -63,9 +46,7 @@ export default function GlobalState(props) {
     pokedex,
     setPokedex,
     pagination,
-    listAllPokemons, 
-    setAllPokemons
-   
+    setPagination,
   };
 
   return <Provider value={values}>{props.children}</Provider>;

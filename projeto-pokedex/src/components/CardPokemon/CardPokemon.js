@@ -38,7 +38,6 @@ export default function CardPokemon() {
 }
 
 
-
   const listPokemon = () => {
     return dataPokemons.map((pokemon) => {
       return (

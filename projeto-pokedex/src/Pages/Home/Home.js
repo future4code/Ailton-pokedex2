@@ -6,8 +6,7 @@ import {
   Header,
   LogoImage,
   Main,
-  ButtonPokedex,
-  BoxPokemon,
+
   DivButtonPoke,
 } from "../../Style/HomePageStyle.js";
 import Logo from "../../assets/images/Logo.png";
@@ -17,10 +16,22 @@ import { Button } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
 
+
 function Home() {
   const Navigate = useNavigate();
-  const { pagination, setPagination } = useContext(Context);
+  const { pagination, setPagination, AllPokemons, setAllPokemons } = useContext(Context);
   
+
+ 
+
+
+  const changePages = (turn) => {
+    const proxPag = pagination + turn;
+  setPagination(proxPag);
+   
+  };
+
+
 
   return (
     <ChakraProvider>
@@ -40,9 +51,15 @@ function Home() {
           </DivButtonPoke>
         </Header>
 
-        <Main>
-          <CardPokemon />
-        </Main>
+        <Main><CardPokemon /></Main>
+
+        <Button
+          colorScheme={"twitter"}
+          w={"12vw"}
+          onClick={() => changePages(1)}
+        >
+          Muda Página
+        </Button>
       </DivContainer>
     </ChakraProvider>
   );
