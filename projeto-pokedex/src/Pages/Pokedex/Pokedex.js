@@ -39,15 +39,10 @@ import { goToPageDetail } from '../../Routes/Coordinator'
 function Pokedex() {
 
   const { pokedex, setPokedex} = useContext(Context)
-  const [listaPokedex, setListaPokedex] = useState([])
-
-//  useEffect(()=>{
-
-
-//   listPokedex()
+  const {listaPokedex, setListaPokedex} = useContext(Context)
+  
 
 
-//  },[listaPokedex])
 
 
   const Navigate = useNavigate()
@@ -61,7 +56,7 @@ function Pokedex() {
   }
 
 
-// console.log('POKEDEX', listaPokedex)
+
 
     const getPokedex = () => {
     const pokedexlistP = []
@@ -73,7 +68,7 @@ function Pokedex() {
             setListaPokedex(pokedexlistP)
 
           })
-          .catch((err) => {
+          .catch((err) => { 
             console.log(err)
           })
       ))  
@@ -84,16 +79,16 @@ function Pokedex() {
     
 
   const removePokedex = (onPokedex) =>{
-    console.log('pokemon da pokedex', onPokedex)
 
-    const removeDex = pokedex.filter(remove =>{
-        console.log('clicado', remove)
-        return  onPokedex !== remove
+    const newPokedex = listaPokedex.filter(pokedex =>{
+        return  onPokedex !== pokedex.name
     })
-    console.log('array sem pokemon',removeDex)
-    setPokedex(removeDex)
-    getPokedex()
+    setListaPokedex(newPokedex)
+    console.log(newPokedex)
   }
+  
+
+  
   const listPokedex = () => {
     return listaPokedex?.map((pokemon) => {
       return (
