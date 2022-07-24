@@ -26,20 +26,15 @@ export default function CardPokemon() {
     const newPokedex = [...pokedex, pokemonName]
     if (!pokemonPokedex) {
       setPokedex(newPokedex)
-      
     }
   }
 
-  const removePokedex = (onPokedex) =>{
-    const removeDex = pokedex.filter(remove =>{
-        return remove.id !== onPokedex.id
+  const removePokedex = (onPokedex) => {
+    const removeDex = pokedex.filter((remove) => {
+      return remove.id !== onPokedex.id
     })
     setPokedex(removeDex)
-}
-
-
-
-    
+  }
 
   // console.log('CardPokemon',pokedex)
   const listPokemon = () => {
@@ -52,14 +47,16 @@ export default function CardPokemon() {
           <PokemonImage
             src={pokemon.sprites.other['official-artwork'].front_default}
           ></PokemonImage>
+          <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
           <DivButton>
             <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
               Detalhes
             </Button>
-            <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
 
             {pokedex.includes(pokemon.name) && (
-              <ButtonCaptured onClick={() =>  removePokedex(pokemon.name)}>Remover !</ButtonCaptured>
+              <ButtonCaptured onClick={() => removePokedex(pokemon.name)}>
+                Remover !
+              </ButtonCaptured>
             )}
 
             {pokedex.includes(pokemon.name) || (
@@ -75,7 +72,6 @@ export default function CardPokemon() {
 
   return (
     <DivContainer>
-      
       {dataPokemons !== 0 ? listPokemon() : <p>...Carregando</p>}
     </DivContainer>
   )
