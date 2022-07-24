@@ -56,7 +56,7 @@ function Details() {
       .get(`https://pokeapi.co/api/v2/pokemon/${params.pokemonName}`)
       .then((res) => {
         setDadosPoke(res.data);
-        console.log(res)
+
       })
       .catch((err) => {
         console.log(err);

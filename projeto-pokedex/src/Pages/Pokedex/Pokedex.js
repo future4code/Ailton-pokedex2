@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TypeOfPokemon from '../../components/TypeOfPokemon/TypeOfPokemon'
-
+import PokebolaVazia from './../../assets/images/pokebola-vazia.png'
 import { Context } from '../../Constants/createContext'
 import axios from 'axios'
 import {
@@ -11,43 +11,39 @@ import {
   PokemonName,
   DivContainer,
   PokemonImage,
-  Button,
   DivButton,
   ButtonCaptured
 } from './../../Style/Cards/Cards'
 
 import {
   GlobalStyle,
+  DivPokemonsRenderizados,
   DivContainerPage,
+  DivVazia,
   Header,
   LogoImage,
   Main,
+  DivVaziaP,
+  Alert,
   ButtonPokedex,
   DivButtonPoke,
   BoxPokemon
 } from '../../Style/PokedexPageStyle'
 import { goToPage } from '../../Routes/Coordinator'
-// import { Button, ButtonGroup, omitThemingProps } from '@chakra-ui/react'
-// import { ChakraProvider } from '@chakra-ui/react'
+import { Button, ButtonGroup, omitThemingProps,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import Logo from '../../assets/images/Logo.png'
 import Lottie from 'react-lottie'
 import animationData from '../../lotties/pokebola.json'
-import { GetPokemons } from './../../Hooks/useRequestData'
-import { BASE_URL } from '../../Constants/Url'
 import { goToPageDetail } from '../../Routes/Coordinator'
-
 function Pokedex() {
 
   const { pokedex, setPokedex} = useContext(Context)
   const [listaPokedex, setListaPokedex] = useState([])
 
-//  useEffect(()=>{
-
-
-//   listPokedex()
-
-
-//  },[listaPokedex])
 
 
   const Navigate = useNavigate()
@@ -60,8 +56,9 @@ function Pokedex() {
     }
   }
 
-
-// console.log('POKEDEX', listaPokedex)
+  useEffect(() => {
+    getPokedex()
+},[pokedex])
 
     const getPokedex = () => {
     const pokedexlistP = []
@@ -78,22 +75,7 @@ function Pokedex() {
           })
       ))  
     }
-      useEffect(() => {
-        getPokedex()
-  },[pokedex])
     
-
-  const removePokedex = (onPokedex) =>{
-    console.log('pokemon da pokedex', onPokedex)
-
-    const removeDex = pokedex.filter(remove =>{
-        console.log('clicado', remove)
-        return  onPokedex !== remove
-    })
-    console.log('array sem pokemon',removeDex)
-    setPokedex(removeDex)
-    getPokedex()
-  }
   const listPokedex = () => {
     return listaPokedex?.map((pokemon) => {
       return (
@@ -116,12 +98,25 @@ function Pokedex() {
     })
   }
 
+  const removePokedex = (onPokedex) =>{
+
+    const removeDex = pokedex.filter(remove =>{
+
+        return  onPokedex !== remove
+    })
+
+    setPokedex(removeDex)
+    getPokedex()
+  }
+    
+
   return (
+    <ChakraProvider>
     <DivContainerPage>
-     
+     <GlobalStyle></GlobalStyle>
       <Header>
         <Button
-          colorScheme={'twitter'}
+          colorScheme={"twitter"}
           w={'12vw'}
           onClick={() => goToPage(Navigate, 'home')}
         >
@@ -131,28 +126,36 @@ function Pokedex() {
       </Header>
       {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
 
-      <main>
+      <Main>
 
 
         {listaPokedex.length === 0 ?
-        
-        <p>...Sem pokémon</p>
+        <DivVazia>
+          <img src={PokebolaVazia}
+          width={'500px'}
+          height={'600px'}></img>
+          <DivVaziaP>Pokebola Vazia</DivVaziaP>
+        </DivVazia>
         
         :
 
-        listPokedex()
+        <DivPokemonsRenderizados>
+          {listPokedex()}
+        </DivPokemonsRenderizados>
         
-        }
+        
+      }
 
         
         
         
         
-        </main>
-      {/* <Main>{pokedex !== 0 ? { listPokedex } : <p>Sem Pokemons</p>}</Main> */}
+        </Main>
+
 
    
     </DivContainerPage>
+      </ChakraProvider>
   )
 }
 
