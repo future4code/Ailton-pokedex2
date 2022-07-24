@@ -83,7 +83,8 @@ function Details() {
             <P>Sp.Atk:{dadosPoke.stats[3].base_stat}</P>
             <P>Sp.Def:{dadosPoke.stats[4].base_stat}</P>
             <P>Speed:{dadosPoke.stats[5].base_stat}</P>
-            <P>Total:{}</P>
+            <P>Total:{dadosPoke.stats[0].base_stat+dadosPoke.stats[1].base_stat+dadosPoke.stats[2].base_stat+
+            dadosPoke.stats[3].base_stat+dadosPoke.stats[4].base_stat+dadosPoke.stats[5].base_stat}</P>
           </BoxStatus>
           <div>
           <TextId>Nº#{dadosPoke.id}</TextId>

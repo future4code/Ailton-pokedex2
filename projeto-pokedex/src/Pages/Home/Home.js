@@ -3,19 +3,20 @@ import { Context } from "../../Constants/createContext";
 import {
 DivContainerPage,
   GlobalStyle,
+  TextHome,
   Header,
   LogoImage,
   Main,
-
+  DivButtonChange,
   DivButtonPoke,
+  DivPagination,
 } from "../../Style/HomePageStyle.js";
 import Logo from "../../assets/images/Logo.png";
 import { useNavigate } from "react-router-dom";
 import { goToPage } from "../../Routes/Coordinator";
-import { Button } from "@chakra-ui/react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Button } from "@chakra-ui/react";
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
-
+import HeaderImage from './../../assets/images/header.jpg'
 
 function Home() {
   const Navigate = useNavigate();
@@ -50,15 +51,22 @@ function Home() {
           </DivButtonPoke>
         </Header>
 
-        <Main><CardPokemon /></Main>
+        <Main>
+          <TextHome>Escolha seus pokémons !</TextHome>
+          <CardPokemon /></Main>
+        <DivButtonChange>
 
         <Button
-          colorScheme={"twitter"}
+          colorScheme={"purple"}
           w={"12vw"}
           onClick={() => changePages(1)}
         >
-          Muda Página
+          Próxima Página
         </Button>
+          <DivPagination><Button
+           colorScheme={"purple"}
+           marginLeft={'4px'}>{`${pagination}`}</Button></DivPagination>
+        </DivButtonChange>
       </DivContainerPage>
     </ChakraProvider>
   );
