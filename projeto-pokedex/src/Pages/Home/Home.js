@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../Constants/createContext";
 import {
-  DivContainer,
+DivContainerPage,
   GlobalStyle,
   Header,
   LogoImage,
@@ -35,8 +35,7 @@ function Home() {
 
   return (
     <ChakraProvider>
-      <DivContainer>
-        <GlobalStyle />
+      <DivContainerPage>
         <Header>
           <LogoImage src={Logo} alt="logo"></LogoImage>
 
@@ -60,7 +59,7 @@ function Home() {
         >
           Muda Página
         </Button>
-      </DivContainer>
+      </DivContainerPage>
     </ChakraProvider>
   );
 }

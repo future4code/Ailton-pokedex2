@@ -8,13 +8,18 @@ import styled from "styled-components";
 
 export const PokemonsTypes = styled.div`
 display: flex;
-  margin: 10px;
   background-color: ${(props) => props.color};
-  width: 75px;
-  height: 31px;
+  min-height: 1.5rem;
+  min-width: 5rem;
   border-radius: 8px;
   color: white;
-  border: 1px dashed rgba(255, 255, 255, 0.47);
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  
+ 
 `;
 
 // export const colorType = {

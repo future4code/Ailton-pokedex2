@@ -1,7 +1,7 @@
-import React from 'react'
-import { useContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Context } from '../../Constants/createContext'
+import React from "react";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Context } from "../../Constants/createContext";
 import {
   DivTypes,
   CardPokemonStyled,
@@ -11,32 +11,30 @@ import {
   PokemonImage,
   Button,
   ButtonCaptured,
-  DivButton
-} from './../../Style/Cards/Cards'
-import { goToPageDetail } from '../../Routes/Coordinator'
-import TypeOfPokemon from '../TypeOfPokemon/TypeOfPokemon'
+  DivButton,
+} from "./../../Style/Cards/Cards";
+import { goToPageDetail } from "../../Routes/Coordinator";
+import TypeOfPokemon from "../TypeOfPokemon/TypeOfPokemon";
 
 export default function CardPokemon() {
-  const { dataPokemons } = useContext(Context)
-  const { pokedex, setPokedex } = useContext(Context)
-  const Navigate = useNavigate()
+  const { dataPokemons } = useContext(Context);
+  const { pokedex, setPokedex } = useContext(Context);
+  const Navigate = useNavigate();
 
   const addPokemon = (pokemonName) => {
-    const pokemonPokedex = pokedex.some((pokemon) => pokemon === pokemonName)
-    const newPokedex = [...pokedex, pokemonName]
+    const pokemonPokedex = pokedex.some((pokemon) => pokemon === pokemonName);
+    const newPokedex = [...pokedex, pokemonName];
     if (!pokemonPokedex) {
-      setPokedex(newPokedex)
-      
+      setPokedex(newPokedex);
     }
-  }
+  };
 
-  const removePokedex = (onPokedex) =>{
-    const removeDex = pokedex.filter(remove =>{
-        return remove.id !== onPokedex.id
-    })
-    setPokedex(removeDex)
-}
-
+  const removePokedex = (onPokedex) => {
+    const removeDex = pokedex.filter((remove) => {
+      return remove.id !== onPokedex.id;
+    });
+    setPokedex(removeDex);
+  };
 
   const listPokemon = () => {
     return dataPokemons.map((pokemon) => {
@@ -46,7 +44,7 @@ export default function CardPokemon() {
           <PokemonName>{pokemon.name}</PokemonName>
 
           <PokemonImage
-            src={pokemon.sprites.other['official-artwork'].front_default}
+            src={pokemon.sprites.other["official-artwork"].front_default}
           ></PokemonImage>
           <DivButton>
             <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
@@ -65,14 +63,13 @@ export default function CardPokemon() {
             )}
           </DivButton>
         </CardPokemonStyled>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <DivContainer>
-      
       {dataPokemons !== 0 ? listPokemon() : <p>...Carregando</p>}
     </DivContainer>
-  )
+  );
 }

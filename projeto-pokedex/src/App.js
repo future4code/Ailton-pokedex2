@@ -1,6 +1,9 @@
 import {Router} from './Routes/Routes'
 import React from "react"
 import GlobalState from './Constants/GlobalState';
+import { GlobalStyle } from './Style/PageDetailStyled';
+
+
 
 function App() {  
 
@@ -9,7 +12,7 @@ function App() {
 
     
       <GlobalState>
-
+<GlobalStyle></GlobalStyle>
       <Router/>
       
       </GlobalState>
