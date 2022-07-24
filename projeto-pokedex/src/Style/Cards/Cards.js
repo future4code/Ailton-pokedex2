@@ -44,6 +44,7 @@ export const ContainerImage = styled.div`
   justify-content: space-between;
 `;
 export const CardPokemonStyled = styled.div`
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   width: 440px;
