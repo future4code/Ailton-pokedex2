@@ -1,100 +1,117 @@
-import { propNames } from "@chakra-ui/react"
-import styled from "styled-components"
+import { propNames } from "@chakra-ui/react";
+import styled from "styled-components";
+import poke from "../../assets/images/poke.svg";
+import VT323 from "../../assets/fonts/VT323-Regular.ttf";
+import { createGlobalStyle } from "styled-components";
 
+export const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  @font-face {
+      font-family: 'VT323' ;
+      src: url(${VT323});
+    }
+`;
 export const DivContainer = styled.div`
-
-display: flex;
-flex-wrap: wrap;
-column-gap: 10px;
-row-gap: 50px;
-margin: 10px;
-`
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 50px;
+  margin: 10px;
+`;
 
 export const DivTypes = styled.div`
+  font-family: VT323;
+  display: flex;
+  margin-top: -30%;
+  justify-content: space-between;
+`;
 
-display: flex;
-column-gap: 4px;
-`
+export const DivID = styled.div`
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+`;
 
-
+export const ContainerImage = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export const CardPokemonStyled = styled.div`
-
-width: 440px;
-height: 210px;
-background-color:  #c40233;
-border-radius: 12px;
-
-
-`
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+  height: 210px;
+  background-color: #82d1fd;
+  border-radius: 12px;
+  background-image: url(${poke});
+  background-repeat: no-repeat;
+  background-position: 11rem;
+  background-size: 18rem;
+`;
 
 export const TextId = styled.p`
-padding:0.5rem;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 19px;
-color: white;
-`
+  font-family: VT323;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #003755;
+`;
 
-export const PokemonName = styled.p`
-padding:0.5rem;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 32px;
-line-height: 39px;
-color: white;
-`
+export const PokemonName = styled.h1`
+  font-family: VT323;
+  color: #003755;
+  margin-top: -20%;
+  text-transform: capitalize;
+`;
 
-export const PokemonImage= styled.img`
-
-width: 150px;
-height: 150px;
-margin-left: 20vw;
-margin-top: -20vh;
-`
-
-
+export const PokemonImage = styled.img`
+  margin-right: 1rem;
+  width: 150px;
+  height: 150px;
+`;
 
 export const DivButton = styled.div`
-display: flex;
-justify-content: space-between;
-
-`
+  font-family: VT323;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: blue; */
+  margin: 0 1rem 1rem;
+`;
 
 export const Button = styled.button`
+  background-color: #006b76;
+  border: 0;
+  color: white;
+  min-width: 10vw;
+  border-radius: 0.3rem;
+  margin: 0.5rem;
+  height: 5vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-background-color: lightskyblue;
-color: white;
-width: 8vw;
-border-radius: 0.3rem;
-margin:0.5rem;
-height: 5vh;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-&:hover{
-
-  cursor: pointer;
-
-}
-
-`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 export const ButtonCaptured = styled.button`
+font-family: VT323;
+  background-color: red;
+  border: 0;
+  color: white;
+  min-width: 10vw;
+  border-radius: 0.3rem;
+  margin: 0.5rem;
+  height: 5vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-background-color: red;
-color: white;
-width: 8vw;
-border-radius: 0.3rem;
-margin:0.5rem;
-height: 5vh;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-&:hover{
-
-  cursor: pointer;
-
-}
-
-`
+  &:hover {
+    cursor: pointer;
+  }
+`;

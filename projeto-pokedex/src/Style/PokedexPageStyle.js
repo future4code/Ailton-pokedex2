@@ -1,6 +1,7 @@
-import styled from 'styled-components'
-import { createGlobalStyle } from 'styled-components'
-import VT323 from './../assets/fonts/VT323-Regular.ttf'
+
+import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
+import VT323 from "../assets/fonts/VT323-Regular.ttf"
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -9,21 +10,43 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
-`
+`;
+export const DivVazia = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+`;
+export const DivVaziaP = styled.p`
+  font-size: 4rem;
+  @font-face {
+    font-family: "VT323";
+    src: url(${VT323});
+  }
+  font-family: VT323;
+`;
+
+export const DivPokemonsRenderizados = styled.div` 
+display: flex; 
+flex-wrap: wrap; 
+justify-content: center; 
+gap: 5vw;` 
+
 
 export const DivContainerPage = styled.div`
   width: 100vw;
   height: 100%;
   background-size: cover;
-  background-image: url('https://i.pinimg.com/originals/df/4e/8b/df4e8ba28f912bf9cdf9fa0dfc196411.png');
-`
+  background-color: black;
+  background-image: url("https://i.pinimg.com/originals/df/4e/8b/df4e8ba28f912bf9cdf9fa0dfc196411.png");
+`;
 
 export const BoxPokemon = styled.div`
   padding: 1rem;
   width: 20rem;
   height: 10rem;
   border: 1px solid black;
-`
+`;
 
 export const Header = styled.header`
   background-color: white;
@@ -31,19 +54,23 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
-`
+`;
 export const LogoImage = styled.img`
   width: 240px;
   height: 80px;
   margin-top: 1vh;
-`
+  margin-right: 1vw;
+`;
 export const DivButtonPoke = styled.div`
   position: absolute;
   right: 4vw;
   top: 4vh;
-`
+  margin-left: 1vw;
+`;
+export const Pkebola = styled.img`
+  width: 50%;
 
+`
 export const ButtonPokedex = styled.button`
   background-color: lightskyblue;
   color: white;
@@ -55,7 +82,7 @@ export const ButtonPokedex = styled.button`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 export const Main = styled.div`
   padding-top: 1rem;
@@ -65,25 +92,24 @@ export const Main = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   width: 100vw;
-  height: 85%;
-`
+  min-height: 85vh;
+`;
+
 export const ButtonCaptured = styled.button`
+  background-color: red;
+  color: white;
+  width: 8vw;
+  border-radius: 0.3rem;
+  margin: 0.5rem;
+  height: 5vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-background-color: red;
-color: white;
-width: 8vw;
-border-radius: 0.3rem;
-margin:0.5rem;
-height: 5vh;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-&:hover{
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
-  cursor: pointer;
-
-}
-
-`
 
 export const DivVazia = styled.div`
 

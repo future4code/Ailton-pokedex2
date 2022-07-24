@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TypeOfPokemon from "../../components/TypeOfPokemon/TypeOfPokemon";
-
 import { Context } from "../../Constants/createContext";
 import axios from "axios";
 import {
@@ -9,11 +8,12 @@ import {
   CardPokemonStyled,
   TextId,
   PokemonName,
-  DivContainer,
   PokemonImage,
   Button,
   DivButton,
   ButtonCaptured,
+  ContainerImage,
+  DivID,
 } from "./../../Style/Cards/Cards";
 
 import {
@@ -25,7 +25,12 @@ import {
   ButtonPokedex,
   DivButtonPoke,
   BoxPokemon,
+  DivVazia,
+  DivVaziaP,
+  DivPokemonsRenderizados,
+  Pkebola,
 } from "../../Style/PokedexPageStyle";
+import PokebolaVazia from "./../../assets/images/pokebola-vazia.png";
 import { goToPage } from "../../Routes/Coordinator";
 // import { Button, ButtonGroup, omitThemingProps } from '@chakra-ui/react'
 // import { ChakraProvider } from '@chakra-ui/react'
@@ -35,6 +40,7 @@ import animationData from "../../lotties/pokebola.json";
 import { GetPokemons } from "./../../Hooks/useRequestData";
 import { BASE_URL } from "../../Constants/Url";
 import { goToPageDetail } from "../../Routes/Coordinator";
+import { Container } from "@chakra-ui/react";
 
 function Pokedex() {
   const { pokedex, setPokedex } = useContext(Context);
@@ -72,7 +78,7 @@ function Pokedex() {
     const newPokedex = listaPokedex.filter((pokedex) => {
       return onPokedex !== pokedex.name;
     });
-    setListaPokedex(newPokedex)
+    setListaPokedex(newPokedex);
     setPokedex(newPokedex);
   };
 NOVO
@@ -81,21 +87,25 @@ const listPokedex = () => {
     return listaPokedex?.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
-          <TextId>#{pokemon.id}</TextId>
-          <PokemonName>{pokemon.name}</PokemonName>
+          <ContainerImage>
+            <DivID>
+              <TextId>#{pokemon.id}</TextId>
+              <PokemonName>{pokemon.name}</PokemonName>
+              <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
+            </DivID>
+            <PokemonImage
+              src={pokemon.sprites.other["official-artwork"].front_default}
+            ></PokemonImage>
+          </ContainerImage>
 
-          <PokemonImage
-            src={pokemon.sprites.other["official-artwork"].front_default}
-          ></PokemonImage>
           <DivButton>
             <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
               Detalhes
             </Button>
+            <ButtonCaptured onClick={() => removePokedex(pokemon.name)}>
+              Remover
+            </ButtonCaptured>
           </DivButton>
-          <DivTypes>{TypeOfPokemon(pokemon.types)}</DivTypes>
-          <ButtonCaptured onClick={() => removePokedex(pokemon.name)}>
-            Remover !
-          </ButtonCaptured>
         </CardPokemonStyled>
       );
     });
@@ -103,6 +113,7 @@ const listPokedex = () => {
 
   return (
     <DivContainerPage>
+      <GlobalStyle></GlobalStyle>
       <Header>
         <Button
           colorScheme={"twitter"}
@@ -115,10 +126,17 @@ const listPokedex = () => {
       </Header>
       {/* <Lottie options={defaultOptions} height={100} width={100} /> /}
 
-      <main>
-        {listaPokedex.length === 0 ? <p>...Sem pokémon</p> : listPokedex()}
-      </main>
-      {/ <Main>{pokedex !== 0 ? { listPokedex } : <p>Sem Pokemons</p>}</Main> */}
+
+      <Main>
+        {listaPokedex.length === 0 ? (
+          <DivVazia>
+            <Pkebola alt="pokebola-vazia" src={PokebolaVazia}></Pkebola>
+            <DivVaziaP>Pokebola Vazia</DivVaziaP>
+          </DivVazia>
+        ) : (
+          <DivPokemonsRenderizados>{listPokedex()}</DivPokemonsRenderizados>
+        )}
+      </Main>
     </DivContainerPage>
   );
 }
