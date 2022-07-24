@@ -32,10 +32,11 @@ export const DivTypes = styled.div`
 `;
 
 export const DivID = styled.div`
-  gap: 1rem;
+  gap: 2rem;
   display: flex;
   flex-direction: column;
   margin-left: 1rem;
+  margin-top: 2vh;
 `;
 
 export const ContainerImage = styled.div`
@@ -54,13 +55,18 @@ export const CardPokemonStyled = styled.div`
   background-repeat: no-repeat;
   background-position: 11rem;
   background-size: 18rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+    &:hover{
+      margin-top: 5px;
+    }
+
 `;
 
 export const TextId = styled.p`
   font-family: VT323;
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 35px;
   line-height: 19px;
   color: #003755;
 `;
@@ -70,6 +76,7 @@ export const PokemonName = styled.h1`
   color: #003755;
   margin-top: -20%;
   text-transform: capitalize;
+  font-size: 40px;
 `;
 
 export const PokemonImage = styled.img`
@@ -86,8 +93,8 @@ export const DivButton = styled.div`
   margin: 0 1rem 1rem;
 `;
 
-export const Button = styled.button`
-  background-color: #006b76;
+export const ButtonReut = styled.button`
+  background-color: ${(props)=> props.color};
   border: 0;
   color: white;
   min-width: 10vw;

@@ -57,7 +57,8 @@ export const LogoImage = styled.img`
   width: 240px;
   height: 80px;
   margin-top: 1vh;
-  margin-right: 1vw;
+  margin-right: 2vw;
+
 `;
 export const DivButtonPoke = styled.div`
   position: absolute;

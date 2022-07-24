@@ -58,7 +58,7 @@ function Details() {
       .get(`https://pokeapi.co/api/v2/pokemon/${params.pokemonName}`)
       .then((res) => {
         setDadosPoke(res.data);
-        console.log(res);
+
       })
       .catch((err) => {
         console.log(err);
@@ -88,7 +88,8 @@ function Details() {
               <P><strong>Sp.Atk:</strong><Progress hasStripe value={dadosPoke.stats[3].base_stat} /></P>
               <P><strong>Sp.Def:</strong><Progress hasStripe value={dadosPoke.stats[4].base_stat} /></P>
               <P><strong>Speed:</strong><Progress hasStripe value={dadosPoke.stats[5].base_stat} /></P>
-              <P><strong>Total:</strong>{}</P>
+              <P><strong>Total:</strong><Progress hasStripe value={dadosPoke.stats[0].base_stat+dadosPoke.stats[1].base_stat+dadosPoke.stats[2].base_stat+
+            dadosPoke.stats[3].base_stat+dadosPoke.stats[4].base_stat+dadosPoke.stats[5].base_stat}</P>
             </BoxStatus>
             <div>
               <ContID>
@@ -107,6 +108,7 @@ function Details() {
               </BoxMoves>
             </div>
           </CardInterno>
+
           <PokemonImage
             src={dadosPoke.sprites.other["official-artwork"].front_default}
           ></PokemonImage>
