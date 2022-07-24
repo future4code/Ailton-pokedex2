@@ -9,7 +9,7 @@ import {
   TextId,
   PokemonName,
   PokemonImage,
-  Button,
+  ButtonReut,
   DivButton,
   ButtonCaptured,
   ContainerImage,
@@ -22,9 +22,6 @@ import {
   Header,
   LogoImage,
   Main,
-  ButtonPokedex,
-  DivButtonPoke,
-  BoxPokemon,
   DivVazia,
   DivVaziaP,
   DivPokemonsRenderizados,
@@ -32,20 +29,20 @@ import {
 } from "../../Style/PokedexPageStyle";
 import PokebolaVazia from "./../../assets/images/pokebola-vazia.png";
 import { goToPage } from "../../Routes/Coordinator";
-// import { Button, ButtonGroup, omitThemingProps } from '@chakra-ui/react'
-// import { ChakraProvider } from '@chakra-ui/react'
+import { Button, ButtonGroup, omitThemingProps, useToast } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import Logo from "../../assets/images/Logo.png";
 import Lottie from "react-lottie";
 import animationData from "../../lotties/pokebola.json";
-import { GetPokemons } from "./../../Hooks/useRequestData";
-import { BASE_URL } from "../../Constants/Url";
 import { goToPageDetail } from "../../Routes/Coordinator";
-import { Container } from "@chakra-ui/react";
+
 
 function Pokedex() {
   const { pokedex, setPokedex } = useContext(Context);
   const { listaPokedex, setListaPokedex } = useContext(Context);
-  
+  const toast = useToast()
+
+
   const Navigate = useNavigate();
   const defaultOptions = {
     loop: true,
@@ -60,7 +57,7 @@ function Pokedex() {
     const pokedexlistP = [];
     pokedex?.forEach((pokemon) =>
       axios
-        .get(https://pokeapi.co/api/v2/pokemon/${pokemon})
+        .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
         .then((res) => {
           pokedexlistP.push(res.data);
           setListaPokedex(pokedexlistP);
@@ -75,18 +72,34 @@ function Pokedex() {
   }, [pokedex]);
 
   const removePokedex = (onPokedex) => {
+
+    const pokemonNameToast = onPokedex
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    toast({
+      title: 'Pokémon removido !',
+      description: `${capitalizeFirstLetter(pokemonNameToast)} removido !`,
+      status: 'error',
+      position: 'top',
+      duration: 4000,
+      isClosable: true,})
+
+
     const newPokedex = listaPokedex.filter((pokedex) => {
       return onPokedex !== pokedex.name;
     });
     setListaPokedex(newPokedex);
     setPokedex(newPokedex);
   };
-NOVO
-[10:05]
-const listPokedex = () => {
+
+  const listPokedex = () => {
     return listaPokedex?.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
+
           <ContainerImage>
             <DivID>
               <TextId>#{pokemon.id}</TextId>
@@ -99,9 +112,11 @@ const listPokedex = () => {
           </ContainerImage>
 
           <DivButton>
-            <Button onClick={() => goToPageDetail(Navigate, pokemon.name)}>
+            <ButtonReut 
+            color={'#006b76'}
+            onClick={() => goToPageDetail(Navigate, pokemon.name)}>
               Detalhes
-            </Button>
+            </ButtonReut>
             <ButtonCaptured onClick={() => removePokedex(pokemon.name)}>
               Remover
             </ButtonCaptured>
@@ -112,20 +127,23 @@ const listPokedex = () => {
   };
 
   return (
-    <DivContainerPage>
+    <DivContainerPage>         
+       <ChakraProvider>
+            
+    
       <GlobalStyle></GlobalStyle>
       <Header>
         <Button
           colorScheme={"twitter"}
           w={"12vw"}
+          marginLeft={2}
           onClick={() => goToPage(Navigate, "home")}
         >
           Voltar
         </Button>
         <LogoImage src={Logo} alt="logo"></LogoImage>
       </Header>
-      {/* <Lottie options={defaultOptions} height={100} width={100} /> /}
-
+      {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
 
       <Main>
         {listaPokedex.length === 0 ? (
@@ -137,6 +155,7 @@ const listPokedex = () => {
           <DivPokemonsRenderizados>{listPokedex()}</DivPokemonsRenderizados>
         )}
       </Main>
+    </ChakraProvider>
     </DivContainerPage>
   );
 }

@@ -1,15 +1,12 @@
 import styled from "styled-components";
-export const DivContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-image: url("https://i.pinimg.com/originals/df/4e/8b/df4e8ba28f912bf9cdf9fa0dfc196411.png");
-  background-size: cover;
-`;
+import VT323 from './../assets/fonts/VT323-Regular.ttf'
+
 
 export const Header = styled.header`
   background-color: white;
   height: 15vh;
   display: flex;
+  width: 100vw;
   justify-content: center;
   align-items: center;
 `;
@@ -44,15 +41,51 @@ export const Main = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   width: 100vw;
-  height: 85vh;
+  min-height: 85vh;
+
+
+
 `;
+
+export const TextHome = styled.h1`
+  font-weight: bold;
+  font-family: VT323;
+  font-size: 40px;
+  &:hover{
+    color: white} ;
+  `
 
 export const DivContainerPage = styled.div`
   width: 100vw;
   height: 100vh;
-  /* background-image: url('https://guikao.files.wordpress.com/2012/01/pokemon_wallpaper01_1680.jpg');
-https://br.pinterest.com/pin/750693831619055182/ */
-  /* background-image: url('https://cdn.dribbble.com/users/1407587/screenshots/3014076/media/ef5ebb3df0fc3474f1a9e4f49c32ddf8.gif'); */
   background-size: cover;
+  overflow: scroll;
+  position: absolute;
   background-image: url("https://i.pinimg.com/originals/df/4e/8b/df4e8ba28f912bf9cdf9fa0dfc196411.png");
+  @font-face {
+      font-family: 'VT323' ;
+      src: url(${VT323});
+    }
 `;
+
+export const DivButtonChange = styled.div`
+
+  display: flex;
+  justify-content: end;
+  margin-right: 2vw;
+  margin-bottom: 2vh;
+
+
+`
+export const DivPagination = styled.div`
+
+
+p{
+
+  font-weight: bold;
+  font-size: 25px;
+  font-family: VT323;
+
+}
+
+`

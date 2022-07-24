@@ -1,8 +1,6 @@
-
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import VT323 from "../assets/fonts/VT323-Regular.ttf"
-
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -59,7 +57,8 @@ export const LogoImage = styled.img`
   width: 240px;
   height: 80px;
   margin-top: 1vh;
-  margin-right: 1vw;
+  margin-right: 2vw;
+
 `;
 export const DivButtonPoke = styled.div`
   position: absolute;
@@ -94,7 +93,6 @@ export const Main = styled.div`
   width: 100vw;
   min-height: 85vh;
 `;
-
 export const ButtonCaptured = styled.button`
   background-color: red;
   color: white;
@@ -104,51 +102,7 @@ export const ButtonCaptured = styled.button`
   height: 5vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-
   &:hover {
     cursor: pointer;
   }
 `;
-
-
-export const DivVazia = styled.div`
-
-
-display: flex;
-justify-content: center;
-align-items: center;
-
-
-`
-
-export const DivVaziaP = styled.p`
-
-font-size: 60px;
-
-@font-face {
-      font-family: 'VT323' ;
-      src: url(${VT323});
-    }
-
-    font-family: VT323;
-
-
-
-`
-
-export const DivPokemonsRenderizados = styled.div`
-
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 5vw;
-
-
-`
-
-export const Alert = styled.window.alert`
-
-color: white;
-
-
-`
