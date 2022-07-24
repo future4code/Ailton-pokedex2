@@ -45,7 +45,7 @@ import { Container } from "@chakra-ui/react";
 function Pokedex() {
   const { pokedex, setPokedex } = useContext(Context);
   const { listaPokedex, setListaPokedex } = useContext(Context);
-
+  
   const Navigate = useNavigate();
   const defaultOptions = {
     loop: true,
@@ -60,7 +60,7 @@ function Pokedex() {
     const pokedexlistP = [];
     pokedex?.forEach((pokemon) =>
       axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+        .get(https://pokeapi.co/api/v2/pokemon/${pokemon})
         .then((res) => {
           pokedexlistP.push(res.data);
           setListaPokedex(pokedexlistP);
@@ -81,8 +81,9 @@ function Pokedex() {
     setListaPokedex(newPokedex);
     setPokedex(newPokedex);
   };
-
-  const listPokedex = () => {
+NOVO
+[10:05]
+const listPokedex = () => {
     return listaPokedex?.map((pokemon) => {
       return (
         <CardPokemonStyled key={pokemon.id}>
@@ -123,7 +124,8 @@ function Pokedex() {
         </Button>
         <LogoImage src={Logo} alt="logo"></LogoImage>
       </Header>
-      {/* <Lottie options={defaultOptions} height={100} width={100} /> */}
+      {/* <Lottie options={defaultOptions} height={100} width={100} /> /}
+
 
       <Main>
         {listaPokedex.length === 0 ? (
